@@ -2,7 +2,7 @@
 
 ## Overview
 
-HeatSense v2 is a web application that helps outdoor workers plan safer work shifts in hot conditions. It combines a live weather forecast, a heat-stress index (Wet-Bulb Globe Temperature, WBGT), and short passages from a small NIOSH/OSHA knowledge base. The app turns those inputs into an hour-by-hour shift plan with work and rest guidance, hydration reminders, and plain-language notes.
+HeatSense is a web application that helps outdoor workers plan safer work shifts in hot conditions. It combines a live weather forecast, a heat-stress index (Wet-Bulb Globe Temperature, WBGT), and short passages from a NIOSH/OSHA knowledge base. The app turns those inputs into an hour-by-hour shift plan with work and rest guidance, hydration reminders, and plain-language notes.
 
 Many heat tools show only a single number or a generic tip. HeatSense ties the forecast to the worker’s job intensity, sun exposure, and shift window. It also grounds written advice in retrieved reference text instead of relying on the model’s memory alone.
 
