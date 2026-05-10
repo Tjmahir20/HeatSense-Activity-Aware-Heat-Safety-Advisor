@@ -165,6 +165,7 @@ Wet-bulb approximations and WBGT composition follow common references used in oc
 This file is **not** a substitute for official agency publications or site-specific occupational health programs.
 
 **References**
+
 Bernard, T. E., & Iheanacho, I. (2015). Heat index and adjusted temperature as surrogates for wet bulb globe temperature to screen for occupational heat stress. Journal of Occupational and Environmental Hygiene, 12(5), 323–333. https://doi.org/10.1080/15459624.2014.989365
 Hunter, C. H., & Minyard, C. O. (1999). Estimating wet bulb globe temperature using standard meteorological measurements. Proceedings of the 2nd Conference on Environmental Applications, American Meteorological Society.
 Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Küttler, H., Lewis, M., Yih, W.-T., Rocktäschel, T., Riedel, S., & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. Advances in Neural Information Processing Systems, 33, 9459–9474. https://arxiv.org/abs/2005.11401
