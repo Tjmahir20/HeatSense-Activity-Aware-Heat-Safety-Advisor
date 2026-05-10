@@ -164,6 +164,10 @@ Wet-bulb approximations and WBGT composition follow common references used in oc
 
 This file is **not** a substitute for official agency publications or site-specific occupational health programs.
 
+**AI coding assistance**
+ 
+Cursor was used for coding help, logic formulation during the development.
+
 **References**
 
 - Bernard, T. E., & Iheanacho, I. (2015). Heat index and adjusted temperature as surrogates for wet bulb globe temperature to screen for occupational heat stress. Journal of Occupational and Environmental Hygiene, 12(5), 323–333. https://doi.org/10.1080/15459624.2014.989365
