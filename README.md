@@ -166,13 +166,13 @@ This file is **not** a substitute for official agency publications or site-speci
 
 **References**
 
-Bernard, T. E., & Iheanacho, I. (2015). Heat index and adjusted temperature as surrogates for wet bulb globe temperature to screen for occupational heat stress. Journal of Occupational and Environmental Hygiene, 12(5), 323–333. https://doi.org/10.1080/15459624.2014.989365
-Hunter, C. H., & Minyard, C. O. (1999). Estimating wet bulb globe temperature using standard meteorological measurements. Proceedings of the 2nd Conference on Environmental Applications, American Meteorological Society.
-Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Küttler, H., Lewis, M., Yih, W.-T., Rocktäschel, T., Riedel, S., & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. Advances in Neural Information Processing Systems, 33, 9459–9474. https://arxiv.org/abs/2005.11401
-National Institute for Occupational Safety and Health. (2016). Criteria for a recommended standard: Occupational exposure to heat and hot environments (Publication No. 2016-106). U.S. Department of Health and Human Services, CDC. https://www.cdc.gov/niosh/docs/2016-106/pdfs/2016-106.pdf
-Occupational Safety and Health Administration. (2023). Heat illness prevention. U.S. Department of Labor. https://www.osha.gov/heat-exposure
-Open-Meteo. (2024). Open-Meteo weather forecast API documentation. https://open-meteo.com/en/docs
-OpenAI. (2024). GPT-4o mini model card and API documentation. https://platform.openai.com/docs/models/gpt-4o-mini
-Stull, R. (2011). Wet-bulb temperature from relative humidity and air temperature. Journal of Applied Meteorology and Climatology, 50(11), 2267–2269. https://doi.org/10.1175/JAMC-D-11-0143.1
-Yaglou, C. P., & Minard, D. (1957). Control of heat casualties at military training centers. A.M.A. Archives of Industrial Health, 16(4), 302–316.
+- Bernard, T. E., & Iheanacho, I. (2015). Heat index and adjusted temperature as surrogates for wet bulb globe temperature to screen for occupational heat stress. Journal of Occupational and Environmental Hygiene, 12(5), 323–333. https://doi.org/10.1080/15459624.2014.989365
+- Hunter, C. H., & Minyard, C. O. (1999). Estimating wet bulb globe temperature using standard meteorological measurements. Proceedings of the 2nd Conference on Environmental Applications, American Meteorological Society.
+- Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Küttler, H., Lewis, M., Yih, W.-T., Rocktäschel, T., Riedel, S., & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. Advances in Neural Information Processing Systems, 33, 9459–9474. https://arxiv.org/abs/2005.11401
+- National Institute for Occupational Safety and Health. (2016). Criteria for a recommended standard: Occupational exposure to heat and hot environments (Publication No. 2016-106). U.S. Department of Health and Human Services, CDC. https://www.cdc.gov/niosh/docs/2016-106/pdfs/2016-106.pdf
+- Occupational Safety and Health Administration. (2023). Heat illness prevention. U.S. Department of Labor. https://www.osha.gov/heat-exposure
+- Open-Meteo. (2024). Open-Meteo weather forecast API documentation. https://open-meteo.com/en/docs
+- OpenAI. (2024). GPT-4o mini model card and API documentation. https://platform.openai.com/docs/models/gpt-4o-mini
+- Stull, R. (2011). Wet-bulb temperature from relative humidity and air temperature. Journal of Applied Meteorology and Climatology, 50(11), 2267–2269. https://doi.org/10.1175/JAMC-D-11-0143.1
+- Yaglou, C. P., & Minard, D. (1957). Control of heat casualties at military training centers. A.M.A. Archives of Industrial Health, 16(4), 302–316.
 
