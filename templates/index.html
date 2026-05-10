@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HeatSense v2 — Activity-Aware Heat Safety Advisor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <div class="app-bg" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <main class="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div class="brand-text">
+            <div class="brand-name">HeatSense</div>
+            <div class="brand-sub">Agentic WBGT shift guidance · v2</div>
+          </div>
+        </div>
+        <div class="topbar-meta">
+          <div class="pill" title="Agentic RAG — ChromaDB + BM25 hybrid retrieval">
+            <span class="pill-dot" aria-hidden="true"></span>
+            Agent mode
+          </div>
+        </div>
+      </header>
+
+      <section class="grid">
+        <section class="card card-form" aria-label="Shift planner">
+          <div class="card-head">
+            <h1 class="h1">Heatwave shift questionnaire</h1>
+            <p class="sub">Answer a few quick questions. An AI agent will fetch live WBGT data and NIOSH/OSHA guidelines to build your hourly plan.</p>
+          </div>
+
+          <form id="hs-form" method="post" action="/" class="form">
+            <div class="q-top" aria-label="Progress">
+              <div class="q-meta">
+                <div class="q-kicker">Step <span id="q-step">1</span> of <span id="q-total">4</span></div>
+                <div class="q-title" id="q-title">Where are you working?</div>
+              </div>
+              <div class="progress" aria-hidden="true">
+                <div class="progress-bar" id="q-progress"></div>
+              </div>
+            </div>
+
+            <div class="q-steps" id="q-steps">
+              <section class="q-step" data-step="1">
+                <label class="field field-wide">
+                  <span class="label">Location</span>
+                  <input
+                    name="location"
+                    type="text"
+                    placeholder="Houston, TX or 29.76,-95.37"
+                    value="{{ form_data.location if form_data else '' }}"
+                    autocomplete="off"
+                    required
+                  />
+                  <span class="hint">Pro tip: paste <code>lat,lon</code> for precise sites.</span>
+                </label>
+              </section>
+
+              <section class="q-step" data-step="2" hidden>
+                <div class="field field-wide">
+                  <div class="label">Job intensity</div>
+                  {% set jt = (form_data.job_type if form_data else 'Heavy') %}
+                  <div class="choice-grid" role="radiogroup" aria-label="Job intensity">
+                    <label class="choice">
+                      <input type="radio" name="job_type" value="Light" {{ 'checked' if jt=='Light' else '' }} />
+                      <span class="choice-ui">
+                        <span class="choice-icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/>
+                            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                          </svg>
+                        </span>
+                        <span class="choice-body">
+                          <span class="choice-title">Light</span>
+                          <span class="choice-sub">Walking / light hand work</span>
+                        </span>
+                      </span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="job_type" value="Moderate" {{ 'checked' if jt=='Moderate' else '' }} />
+                      <span class="choice-ui">
+                        <span class="choice-icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                            <path d="m3.3 7 8.7 5 8.7-5M12 22V12"/>
+                          </svg>
+                        </span>
+                        <span class="choice-body">
+                          <span class="choice-title">Moderate</span>
+                          <span class="choice-sub">Sustained movement / lifting</span>
+                        </span>
+                      </span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="job_type" value="Heavy" {{ 'checked' if jt=='Heavy' else '' }} />
+                      <span class="choice-ui">
+                        <span class="choice-icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 12-8.5 8.5c-.83.83-2.17.83-3 0 0 0 0 0 0 0a2.12 2.12 0 0 1 0-3L12 9"/>
+                            <path d="M17.64 15 22 10.64"/>
+                            <path d="m20.91 11.7-1.25-1.25c-.6-.6-.93-1.4-.93-2.25v-.86L16.01 4.6a5.56 5.56 0 0 0-3.94-1.64H9l.92.82A6.18 6.18 0 0 1 12 8.4v1.56l2 2h2.47l2.26 1.91"/>
+                          </svg>
+                        </span>
+                        <span class="choice-body">
+                          <span class="choice-title">Heavy</span>
+                          <span class="choice-sub">Digging / heavy manual labor</span>
+                        </span>
+                      </span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="job_type" value="Very Heavy" {{ 'checked' if jt=='Very Heavy' else '' }} />
+                      <span class="choice-ui">
+                        <span class="choice-icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
+                          </svg>
+                        </span>
+                        <span class="choice-body">
+                          <span class="choice-title">Very Heavy</span>
+                          <span class="choice-sub">Shoveling / intense construction</span>
+                        </span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="hint">Choose based on sustained workload, not peak moments.</div>
+                </div>
+              </section>
+
+              <section class="q-step" data-step="3" hidden>
+                <div class="sun-cards" role="radiogroup" aria-label="Sun exposure">
+                  {% set ds = (form_data.direct_sun if form_data else True) %}
+                  <label class="choice choice-sun">
+                    <input type="radio" name="direct_sun" value="yes" {{ 'checked' if ds else '' }} />
+                    <span class="choice-ui">
+                      <span class="choice-icon sun-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                          <circle cx="12" cy="12" r="4"/>
+                          <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+                        </svg>
+                      </span>
+                      <span class="choice-body">
+                        <span class="choice-title">Direct Sun</span>
+                        <span class="choice-sub">Working fully exposed outdoors</span>
+                      </span>
+                    </span>
+                  </label>
+                  <label class="choice choice-sun">
+                    <input type="radio" name="direct_sun" value="no" {{ 'checked' if not ds else '' }} />
+                    <span class="choice-ui">
+                      <span class="choice-icon shade-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                        </svg>
+                      </span>
+                      <span class="choice-body">
+                        <span class="choice-title">Shade / Covered</span>
+                        <span class="choice-sub">Sheltered, shaded, or indoor site</span>
+                      </span>
+                    </span>
+                  </label>
+                </div>
+
+                <div class="tip hot">
+                  <div class="tip-title">Heatwave tip</div>
+                  <div class="tip-body">Plan your heaviest work earlier. Midday radiation spikes fast.</div>
+                </div>
+              </section>
+
+              <section class="q-step" data-step="4" hidden>
+                <div class="form-grid compact">
+                  <label class="field">
+                    <span class="label">Shift start</span>
+                    {% set ss = (form_data.shift_start if form_data else 7) %}
+                    <select name="shift_start" required>
+                      {% for h in range(0,24) %}
+                      <option value="{{h}}" {{ 'selected' if ss==h else '' }}>{{ '%02d:00'|format(h) }}</option>
+                      {% endfor %}
+                    </select>
+                  </label>
+
+                  <label class="field">
+                    <span class="label">Shift end</span>
+                    {% set se = (form_data.shift_end if form_data else 15) %}
+                    <select name="shift_end" required>
+                      {% for h in range(0,24) %}
+                      <option value="{{h}}" {{ 'selected' if se==h else '' }}>{{ '%02d:00'|format(h) }}</option>
+                      {% endfor %}
+                    </select>
+                  </label>
+                </div>
+
+                <div class="summary-card" aria-label="Your selections">
+                  <div class="summary-head">
+                    <div class="summary-title">Quick recap</div>
+                    <div class="summary-sub">The agent will fetch live WBGT + NIOSH/OSHA guidance for this window.</div>
+                  </div>
+                  <div class="summary-grid">
+                    <div class="srow">
+                      <div class="sk">Location</div>
+                      <div class="sv" id="sum-location">—</div>
+                    </div>
+                    <div class="srow">
+                      <div class="sk">Intensity</div>
+                      <div class="sv" id="sum-intensity">—</div>
+                    </div>
+                    <div class="srow">
+                      <div class="sk">Sun</div>
+                      <div class="sv" id="sum-sun">—</div>
+                    </div>
+                    <div class="srow">
+                      <div class="sk">Shift</div>
+                      <div class="sv" id="sum-shift">—</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="actions">
+              <button id="back-btn" class="btn" type="button">Back</button>
+              <button id="next-btn" class="btn btn-heat" type="button">
+                <span class="btn-text">Next</span>
+                <span class="btn-glow" aria-hidden="true"></span>
+              </button>
+              <button id="submit-btn" class="btn btn-primary" type="submit" hidden>
+                <span class="btn-text">Generate shift plan</span>
+                <span class="btn-glow" aria-hidden="true"></span>
+              </button>
+              <div id="spinner" class="spinner" hidden aria-live="polite">
+                <div class="spinner-ring" aria-hidden="true"></div>
+                <span>Agent working…</span>
+              </div>
+            </div>
+
+            {% if error %}
+            <div class="alert" role="alert">
+              <div class="alert-title">Something went wrong</div>
+              <div class="alert-body">{{ error }}</div>
+            </div>
+            {% endif %}
+          </form>
+        </section>
+
+        <aside class="card card-info" aria-label="How HeatSense v2 works">
+          <div class="card-head">
+            <h2 class="h2">How it works</h2>
+            <p class="sub">
+              An AI agent calls two tools in real time, then generates your plan.
+            </p>
+          </div>
+          <ul class="bullets">
+            <li><strong>Tool 1 — fetch_wbgt_forecast</strong>: pulls live Open-Meteo weather and computes WBGT (°C) for each shift hour</li>
+            <li><strong>Tool 2 — search_heat_guidelines</strong>: hybrid BM25 + vector search over NIOSH/OSHA limits and work/rest tables</li>
+            <li><strong>Turn 2</strong>: GPT-4o-mini grounds the plan in both tool results and returns structured JSON</li>
+          </ul>
+          <div class="legend" aria-label="Risk legend">
+            <span class="chip chip-green">Safe</span>
+            <span class="chip chip-yellow">Caution</span>
+            <span class="chip chip-red">Danger</span>
+            <span class="chip chip-black">Stop work</span>
+          </div>
+        </aside>
+      </section>
+
+      {% if plan %}
+      <section class="card card-results" aria-label="Shift plan results">
+        <div class="card-head results-head">
+          <div>
+            <h2 class="h2">Shift plan</h2>
+            <p class="sub">{{ plan.worker_summary }}</p>
+          </div>
+        </div>
+
+        <div class="hours">
+          {% for h in plan.hours %}
+          <article class="hour hour-{{ h.risk_color }}">
+            <div class="hour-top">
+              <div class="hour-title">
+                <span class="hour-dot" aria-hidden="true"></span>
+                {{ '%02d:00'|format(h.hour) }}
+              </div>
+              <div class="hour-wbgt">
+                <span class="wbgt-label">WBGT</span>
+                {{ '%.1f'|format(h.wbgt) }}°C
+              </div>
+            </div>
+            <div class="hour-body">
+              <div class="kv">
+                <div class="k">Work/rest</div>
+                <div class="v">{{ h.work_rest_ratio }}</div>
+              </div>
+              <div class="kv">
+                <div class="k">Water</div>
+                <div class="v">{{ h.water_intake }}</div>
+              </div>
+              <div class="notes">{{ h.notes }}</div>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+
+        <p class="disclaimer"><em>{{ plan.disclaimer }}</em></p>
+      </section>
+      {% endif %}
+    </main>
+
+    <script>
+      (function () {
+        const form = document.getElementById("hs-form");
+        const spinner = document.getElementById("spinner");
+        const btn = document.getElementById("submit-btn");
+        const btnText = btn ? btn.querySelector(".btn-text") : null;
+        const backBtn = document.getElementById("back-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const nextText = nextBtn ? nextBtn.querySelector(".btn-text") : null;
+        const stepEl = document.getElementById("q-step");
+        const totalEl = document.getElementById("q-total");
+        const titleEl = document.getElementById("q-title");
+        const barEl = document.getElementById("q-progress");
+        const stepsWrap = document.getElementById("q-steps");
+
+        const sumLocation = document.getElementById("sum-location");
+        const sumIntensity = document.getElementById("sum-intensity");
+        const sumSun = document.getElementById("sum-sun");
+        const sumShift = document.getElementById("sum-shift");
+
+        if (!form || !spinner || !btn || !btnText || !backBtn || !nextBtn ||
+            !nextText || !stepEl || !totalEl || !titleEl || !barEl || !stepsWrap)
+          return;
+
+        const steps = Array.from(stepsWrap.querySelectorAll(".q-step"));
+        const titles = {
+          1: "Where are you working?",
+          2: "How intense is the work?",
+          3: "Is it direct sun?",
+          4: "What's your shift window?",
+        };
+        const total = steps.length || 4;
+        totalEl.textContent = String(total);
+
+        function qs(name) { return form.querySelector(`[name="${name}"]`); }
+
+        function getJobType() {
+          const checked = form.querySelector('input[name="job_type"]:checked');
+          return checked ? checked.value : "";
+        }
+
+        function getSun() {
+          const checked = form.querySelector('input[name="direct_sun"]:checked');
+          return checked && checked.value === "yes" ? "Direct sun" : "Shade";
+        }
+
+        function hourLabel(v) {
+          const n = Number(v);
+          return Number.isFinite(n) ? String(n).padStart(2, "0") + ":00" : "—";
+        }
+
+        function updateSummary() {
+          if (sumLocation)  sumLocation.textContent  = (qs("location")?.value || "").trim() || "—";
+          if (sumIntensity) sumIntensity.textContent  = getJobType() || "—";
+          if (sumSun)       sumSun.textContent        = getSun();
+          const ss = qs("shift_start")?.value;
+          const se = qs("shift_end")?.value;
+          if (sumShift) sumShift.textContent = `${hourLabel(ss)} → ${hourLabel(se)}`;
+        }
+
+        function stepValid(step) {
+          if (step === 1) return (qs("location")?.value || "").trim().length > 0;
+          if (step === 2) return Boolean(getJobType());
+          if (step === 3) return true;
+          if (step === 4) {
+            const ss = Number(qs("shift_start")?.value);
+            const se = Number(qs("shift_end")?.value);
+            return Number.isFinite(ss) && Number.isFinite(se) && se > ss;
+          }
+          return true;
+        }
+
+        let current = 1;
+
+        function render() {
+          steps.forEach((s) => {
+            const n = Number(s.getAttribute("data-step"));
+            const isActive = n === current;
+            s.hidden = !isActive;
+            if (isActive) s.classList.add("is-active");
+            else s.classList.remove("is-active");
+          });
+          stepEl.textContent = String(current);
+          titleEl.textContent = titles[current] || "Questionnaire";
+          barEl.style.width = `${Math.round((current / total) * 100)}%`;
+          backBtn.disabled = current <= 1;
+          nextBtn.disabled = !stepValid(current);
+          const isLast = current >= total;
+          nextBtn.hidden = isLast;
+          btn.hidden = !isLast;
+          updateSummary();
+        }
+
+        function focusFirst() {
+          const el = stepsWrap.querySelector('.q-step:not([hidden]) input, .q-step:not([hidden]) select');
+          if (el) el.focus({ preventScroll: true });
+        }
+
+        function go(delta) {
+          if (delta > 0 && !stepValid(current)) return;
+          current = Math.max(1, Math.min(total, current + delta));
+          render();
+          focusFirst();
+        }
+
+        backBtn.addEventListener("click", () => go(-1));
+        nextBtn.addEventListener("click",  () => go(1));
+
+        form.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            const t = e.target;
+            if (t && t.tagName === "INPUT" && t.type === "text") {
+              e.preventDefault();
+              go(1);
+            }
+          }
+        });
+
+        form.addEventListener("input", () => { updateSummary(); render(); });
+
+        form.addEventListener("submit", function () {
+          spinner.hidden = false;
+          btn.disabled = true;
+          btnText.textContent = "Agent working…";
+        });
+
+        render();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+--- BLOCK: Light Work Thresholds and Guidance ---
+Work intensity: Light work (examples: sitting, standing, light hand or arm work, operating controls while seated).
+NIOSH WBGT REL (acclimatized workers): 30.0°C. High-risk threshold (conservative stop-work limit, per ACGIH/DOD/NIOSH 2016): 32.0°C.
+Below 30.0°C: Normal work pace. Drink 1 cup (250 ml) water every 20 minutes.
+At or above 30.0°C and below 32.0°C: Apply 75% work / 25% rest per hour. Drink 1 cup (250 ml) water every 15 minutes.
+At or above 32.0°C: Apply 50% work / 50% rest per hour. Drink 1 cup (250 ml) water every 10 minutes.
+Above 32.0°C (high-risk threshold exceeded): Stop work immediately. Move worker to a cool area. Provide continuous water. Do not resume until WBGT drops below 30.0°C.
+
+--- BLOCK: Moderate Work Thresholds and Guidance ---
+Work intensity: Moderate work (examples: walking on level ground, moderate lifting and carrying, pushing or pulling light loads).
+NIOSH WBGT REL (acclimatized workers): 26.7°C. High-risk threshold (conservative stop-work limit, per ACGIH/DOD/NIOSH 2016): 28.0°C.
+Below 26.7°C: Normal work pace. Drink 1 cup (250 ml) water every 20 minutes.
+At or above 26.7°C and below 28.0°C: Apply 75% work / 25% rest per hour. Drink 1 cup (250 ml) water every 15 minutes.
+At or above 28.0°C: Apply 50% work / 50% rest per hour. Drink 1 cup (250 ml) water every 10 minutes.
+Above 28.0°C (high-risk threshold exceeded): Stop work immediately. Move worker to a cool area. Provide continuous water. Do not resume until WBGT drops below 26.7°C.
+
+--- BLOCK: Heavy Work Thresholds and Guidance ---
+Work intensity: Heavy work (examples: heavy manual labor, digging with a shovel, carrying heavy loads, sustained walking uphill).
+NIOSH WBGT REL (acclimatized workers): 25.0°C. High-risk threshold (conservative stop-work limit, per ACGIH/DOD/NIOSH 2016): 27.0°C.
+Below 25.0°C: Normal work pace. Drink 1 cup (250 ml) water every 20 minutes.
+At or above 25.0°C and below 27.0°C: Apply 75% work / 25% rest per hour. Drink 1 cup (250 ml) water every 15 minutes.
+At or above 27.0°C: Apply 50% work / 50% rest per hour. Drink 1 cup (250 ml) water every 10 minutes.
+Above 27.0°C (high-risk threshold exceeded): Stop work immediately. Move worker to a cool area. Provide continuous water. Do not resume until WBGT drops below 25.0°C.
+
+--- BLOCK: Very Heavy Work Thresholds and Guidance ---
+Work intensity: Very heavy work (examples: heavy construction, shoveling heavy material, intense sustained physical exertion).
+NIOSH WBGT REL (acclimatized workers): 23.9°C. High-risk threshold (conservative stop-work limit, per ACGIH/DOD/NIOSH 2016): 26.0°C.
+Below 23.9°C: Normal work pace. Drink 1 cup (250 ml) water every 20 minutes.
+At or above 23.9°C and below 26.0°C: Apply 75% work / 25% rest per hour. Drink 1 cup (250 ml) water every 15 minutes.
+At or above 26.0°C: Apply 50% work / 50% rest per hour. Drink 1 cup (250 ml) water every 10 minutes.
+Above 26.0°C (high-risk threshold exceeded): Stop work immediately. Move worker to a cool area. Provide continuous water. Do not resume until WBGT drops below 23.9°C.
+
+--- BLOCK: General Hydration Guidance ---
+All outdoor workers in heat must drink water proactively, not only when thirsty.
+Baseline (WBGT below action limit for any work type): 1 cup (250 ml) every 20 minutes.
+Elevated risk (WBGT at or above action limit): 1 cup (250 ml) every 15 minutes.
+High risk (WBGT at or above ceiling): 1 cup (250 ml) every 10 minutes.
+Stop-work condition (WBGT above ceiling): Continuous water intake while in cool area.
+Avoid alcohol and caffeinated drinks during the shift. Electrolyte replacement is recommended for shifts exceeding 2 hours of sweating.
+
+--- BLOCK: Special Populations Warning ---
+Workers who are pregnant, elderly, on medications that affect thermoregulation (e.g., diuretics, antihistamines, beta-blockers, antidepressants), or with cardiovascular, kidney, or metabolic conditions face significantly higher risk of heat illness.
+These workers should consult a physician before working in heat and should be monitored closely by a supervisor during any hot-weather shift.
+Supervisors should not assign special-population workers to Very Heavy or Heavy work during hours when WBGT exceeds the action limit.
+
+--- BLOCK: Heat Illness Recognition and Emergency Response ---
+Heat illness progresses through three stages. Supervisors must recognize early signs immediately.
+
+Stage 1 — Heat Cramps: Muscle spasms or pain, usually in the legs or abdomen.
+Response: Stop work. Move to shade or cool area. Provide water or electrolyte drink. Stretch affected muscles gently. Worker may resume light work once cramps resolve.
+
+Stage 2 — Heat Exhaustion: Heavy sweating, weakness, cold or pale or clammy skin, fast or weak pulse, nausea, dizziness, possible fainting.
+Response: Stop work immediately. Move to a cool area. Loosen or remove excess clothing. Apply cool wet cloths to skin. Give water or sports drink in small sips. If symptoms do not improve within 15 minutes, call emergency services.
+
+Stage 3 — Heat Stroke: Body temperature above 103°F (39.4°C), hot red skin, rapid strong pulse, possible confusion or loss of consciousness, no sweating despite heat.
+Response: CALL 911 IMMEDIATELY. This is a life-threatening emergency. Move worker to coolest area available. Apply ice packs to neck, armpits, and groin. Do not give fluids to an unconscious person. Stay with the worker until emergency services arrive.
+
+--- BLOCK: Supervisor Shift Planning Guidance ---
+Before the shift: Check the hourly WBGT forecast for the work site. Identify danger hours (hours where WBGT is at or above the action limit for the assigned work type). Schedule the most physically demanding tasks during the coolest hours of the day, typically before 10:00 AM or after 4:00 PM.
+During the shift: Enforce mandatory rest breaks in shaded or air-conditioned areas. Monitor workers for signs of heat illness every 30 minutes. Ensure water supply is present and accessible at all times.
+Communication: Inform all workers of heat conditions and planned rest breaks at the start of each shift. Pair new workers with experienced workers for buddy monitoring during hot conditions.
+
+--- BLOCK: Risk Level Classifications ---
+The following risk levels map WBGT to required action for a given work intensity:
+GREEN (Safe): WBGT is below the NIOSH action limit for the work type. Normal pace. Hydrate every 20 minutes.
+YELLOW (Caution): WBGT is at or above the action limit but below the ceiling. Reduce to 75% work / 25% rest per hour. Hydrate every 15 minutes. Monitor workers closely.
+RED (Danger): WBGT is at or above the ceiling. Reduce to 50% work / 50% rest per hour. Hydrate every 10 minutes. Supervisor must be present.
+BLACK (Stop Work): WBGT exceeds the ceiling. Cease all outdoor work. Move all workers to a cool area. Hydrate continuously. Do not resume until WBGT drops below the action limit.

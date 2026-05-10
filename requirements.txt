@@ -1,0 +1,22 @@
+# Core web
+flask
+python-dotenv
+
+# OpenAI (used by agent + RAG embeddings)
+openai
+
+# RAG — CA4 pattern: ChromaDB vector store + BM25 lexical search
+chromadb
+rank-bm25
+
+# Agentic validation — CA5 pattern: JSON Schema argument validation
+jsonschema
+
+# HTTP (weather API + geocoding)
+requests
+
+# Data validation for LLM output schema
+pydantic
+
+# Scientific numerics (WBGT formulas)
+numpy

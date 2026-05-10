@@ -1,0 +1,21 @@
+# Use this file when the git repository root is the heatsense_v2 folder only.
+# If the repo root is the parent "Project" directory, the parent .gitignore
+# already covers these paths.
+
+.env
+.env.local
+!.env.example
+
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+
+data/chroma_db/
+evaluation/results/
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
